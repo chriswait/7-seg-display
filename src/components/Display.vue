@@ -3,14 +3,14 @@
   <Digit :digit='digits[0]'></Digit>
   <Digit :digit='digits[1]'></Digit>
   <div class='colon'>
-    <div class='dot'>&nbsp;</div>
-    <div class='dot'>&nbsp;</div>
+    <div class='dot' v-show='showDots'>&nbsp;</div>
+    <div class='dot' v-show='showDots'>&nbsp;</div>
   </div>
   <Digit :digit='digits[2]'></Digit>
   <Digit :digit='digits[3]'></Digit>
   <div class='colon'>
-    <div class='dot'>&nbsp;</div>
-    <div class='dot'>&nbsp;</div>
+    <div class='dot' v-show='showDots'>&nbsp;</div>
+    <div class='dot' v-show='showDots'>&nbsp;</div>
   </div>
   <Digit :digit='digits[4]'></Digit>
   <Digit :digit='digits[5]'></Digit>
@@ -51,16 +51,20 @@ export default class Display extends Vue {
       getDigit(this.seconds, 0),
     ]
   }
+  get showDots () {
+    return this.seconds % 2;
+  }
 }
 </script>
 
 <style scoped>
 .display {
+  height: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr) 0.25fr repeat(2, 1fr) 0.25fr repeat(2, 1fr);
 }
 .colon {
-  margin: 60% 0px;
+  /* margin: 60% 0px; */
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -68,7 +72,7 @@ export default class Display extends Vue {
 }
 .dot {
   background-color: red;
-  width: 80%;
+  width: 50%;
   border-radius: 20%;
 }
 </style>
