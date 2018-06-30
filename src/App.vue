@@ -35,35 +35,38 @@ export default class App extends Vue {
 <style>
 html, body {
   margin: 0px;
+  background-color: black;
 }
 #app {
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  --clock-width: 300px;
+  --clock-width: 500px;
   --clock-height: 100px;
   --clock-depth: 300px;
 }
 #scene {
   width: var(--clock-width);
   height: var(--clock-height);
-  perspective: 1000px;
+  perspective: 2000px;
 }
 #clock {
   width: 100%;
   height: 100%;
   position: relative;
   transform-style: preserve-3d;
-  transform: rotateX(-8deg) rotateY(-15deg);
+  transform: rotateX(-8deg);
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: rotation 20s infinite linear;
 }
 .face {
   position: absolute;
   background-color: #272f2f;
   border: 1px solid black;
+  border-radius: 5px;
   transform-style: preserve-3d;
 }
 #front, #back {
@@ -85,6 +88,12 @@ html, body {
 #top {    transform: rotateX(90deg)   rotateY(0deg)     translateZ(calc(var(--clock-height) / 2)); }
 #bottom { transform: rotateX(-90deg)  rotateY(0deg)     translateZ(calc(var(--clock-height) / 2)); }
 
-#front {
+@-webkit-keyframes rotation {
+  from {
+    transform: rotateX(-8deg) rotateY(0deg);
+  }
+  to {
+    transform: rotateX(-8deg) rotateY(359deg);
+  }
 }
 </style>
